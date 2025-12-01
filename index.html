@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>胡宇程 · 超级无敌爱 · 姚娅姗</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            color: #fff;
+            background: radial-gradient(circle at top, #ffd1dc 0, #ff9a9e 25%, #f5576c 55%, #5c258d 100%);
+            overflow: hidden;
+        }
+
+        /* 浪漫粒子背景 */
+        .bg-heart {
+            position: fixed;
+            inset: 0;
+            overflow: hidden;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .bg-heart span {
+            position: absolute;
+            display: block;
+            width: 14px;
+            height: 14px;
+            background: rgba(255, 255, 255, 0.8);
+            transform: rotate(45deg);
+            border-radius: 4px;
+            animation: floatUp 14s linear infinite;
+            box-shadow: 0 0 12px rgba(255, 255, 255, 0.8);
+        }
+
+        .bg-heart span::before,
+        .bg-heart span::after {
+            content: '';
+            position: absolute;
+            width: 14px;
+            height: 14px;
+            background: inherit;
+            border-radius: 50%;
+        }
+
+        .bg-heart span::before {
+            top: -7px;
+            left: 0;
+        }
+
+        .bg-heart span::after {
+            left: -7px;
+            top: 0;
+        }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(100vh) scale(0.7) rotate(45deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.9;
+            }
+            100% {
+                transform: translateY(-20vh) scale(1.1) rotate(45deg);
+                opacity: 0;
+            }
+        }
+
+        .card {
+            position: relative;
+            max-width: 720px;
+            width: 100%;
+            padding: 40px 32px 32px;
+            background: rgba(20, 20, 35, 0.78);
+            border-radius: 24px;
+            box-shadow:
+                0 30px 80px rgba(0, 0, 0, 0.5),
+                0 0 20px rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(18px);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+        }
+
+        .tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 4px 12px;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.08);
+            color: #ffd1dc;
+            font-size: 13px;
+            letter-spacing: 1px;
+        }
+
+        .tag-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #ff9a9e;
+            box-shadow: 0 0 10px rgba(255, 154, 158, 0.9);
+        }
+
+        h1 {
+            margin-top: 18px;
+            font-size: clamp(32px, 5vw, 40px);
+            line-height: 1.2;
+        }
+
+        h1 span.name {
+            background: linear-gradient(120deg, #ffecd2, #fcb69f);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            font-weight: 800;
+        }
+
+        h1 span.love {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        h1 span.love i {
+            font-style: normal;
+            color: #ff9a9e;
+            animation: heartbeat 1.1s infinite;
+            filter: drop-shadow(0 0 6px rgba(255, 154, 158, 0.9));
+        }
+
+        @keyframes heartbeat {
+            0%, 100% {
+                transform: scale(1);
+            }
+            15% {
+                transform: scale(1.18);
+            }
+            30% {
+                transform: scale(0.94);
+            }
+            45% {
+                transform: scale(1.1);
+            }
+        }
+
+        .subtitle {
+            margin-top: 12px;
+            font-size: 15px;
+            color: #e6e6ff;
+            opacity: 0.9;
+        }
+
+        .timeline {
+            margin-top: 26px;
+            padding-left: 4px;
+            border-left: 2px solid rgba(255, 255, 255, 0.15);
+        }
+
+        .timeline-item {
+            position: relative;
+            padding: 10px 0 10px 18px;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -6px;
+            top: 16px;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #ff9a9e;
+            box-shadow: 0 0 12px rgba(255, 154, 158, 0.9);
+        }
+
+        .timeline-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: #ffd1dc;
+        }
+
+        .timeline-text {
+            margin-top: 4px;
+            font-size: 14px;
+            color: #f3f3ff;
+            opacity: 0.88;
+        }
+
+        .counter {
+            margin-top: 24px;
+            padding: 12px 14px;
+            border-radius: 14px;
+            background: rgba(255, 255, 255, 0.06);
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px 18px;
+            align-items: center;
+            font-size: 13px;
+        }
+
+        .counter-label {
+            color: #ffd1dc;
+        }
+
+        .counter-time {
+            font-variant-numeric: tabular-nums;
+            letter-spacing: 1px;
+        }
+
+        .footer {
+            margin-top: 18px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 12px;
+            color: rgba(230, 230, 255, 0.85);
+        }
+
+        .btn-row {
+            margin-top: 22px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .btn {
+            flex: 1;
+            min-width: 120px;
+            padding: 10px 14px;
+            border-radius: 999px;
+            border: none;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+        }
+
+        .btn-primary {
+            background: linear-gradient(120deg, #ff9a9e, #fecfef);
+            color: #4a1a2c;
+            box-shadow: 0 10px 25px rgba(255, 154, 158, 0.5);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 14px 32px rgba(255, 154, 158, 0.8);
+        }
+
+        .btn-ghost {
+            background: transparent;
+            color: #ffd1dc;
+            border: 1px solid rgba(255, 209, 220, 0.6);
+        }
+
+        .btn-ghost:hover {
+            background: rgba(255, 255, 255, 0.06);
+        }
+
+        .btn span.icon {
+            filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.6));
+        }
+
+        @media (max-width: 640px) {
+            body {
+                padding: 16px;
+            }
+
+            .card {
+                padding: 26px 18px 22px;
+            }
+
+            .footer {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 8px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-heart" aria-hidden="true">
+        <!-- 简单随机心形，行数可以增减 -->
+        <span style="left:5%; animation-delay:0s; animation-duration:12s;"></span>
+        <span style="left:15%; animation-delay:2s; animation-duration:16s; transform:scale(0.8) rotate(45deg);"></span>
+        <span style="left:28%; animation-delay:4s; animation-duration:18s;"></span>
+        <span style="left:40%; animation-delay:1s; animation-duration:14s; transform:scale(1.1) rotate(45deg);"></span>
+        <span style="left:55%; animation-delay:3s; animation-duration:17s;"></span>
+        <span style="left:70%; animation-delay:0.5s; animation-duration:15s; transform:scale(0.9) rotate(45deg);"></span>
+        <span style="left:82%; animation-delay:2.8s; animation-duration:19s;"></span>
+        <span style="left:93%; animation-delay:5s; animation-duration:20s;"></span>
+    </div>
+
+    <main class="card">
+        <div class="tag">
+            <span class="tag-dot"></span>
+            <span>这一生 · 只对一个人超级无敌偏心</span>
+        </div>
+
+        <h1>
+            <span class="name">胡宇程</span>
+            <span>超级无敌</span>
+            <span class="love"><i>❤️</i> 爱</span>
+            <span class="name">姚娅姗</span>
+        </h1>
+
+        <p class="subtitle">
+            世界这么大，我的宇宙只对准一个坐标；<br>
+            日升月落，四季更迭，我的答案始终只有——姚娅姗。
+        </p>
+
+        <section class="timeline" aria-label="我们的故事">
+            <div class="timeline-item">
+                <div class="timeline-title">第一眼心动</div>
+                <p class="timeline-text">
+                    那一刻，宇宙多出了一颗独一无二的星星，叫「姚娅姗」；
+                    也是从那一秒开始，「喜欢」悄悄变成了「余生请多指教」。
+                </p>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-title">每一天都在更爱你</div>
+                <p class="timeline-text">
+                    是早安里的困意，是午后消息的小惊喜，是晚安前那句
+                    「有你真好」——生活的所有细节，都在反复证明一件事：
+                    胡宇程，超级、无敌、非常、爆炸爱姚娅姗。
+                </p>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-title">未来，写着我们的名字</div>
+                <p class="timeline-text">
+                    想和你一起踩完所有黄昏，看尽每一场日落，走很长很长的路，
+                    然后在某个普通又幸福的夜晚，轻轻地说一句：原来这就是一生啊。
+                </p>
+            </div>
+        </section>
+
+        <section class="counter" aria-label="爱你的计时器">
+            <span class="counter-label">⏱ 已经爱你的时间：</span>
+            <span id="love-time" class="counter-time">加载中...</span>
+            <span style="opacity:0.8;">（后面的每一秒，也都预订给你）</span>
+        </section>
+
+        <div class="btn-row">
+            <button class="btn btn-primary" id="btn-promise">
+                <span class="icon">💌</span>
+                <span>点我领取：宇程的终身告白</span>
+            </button>
+            <button class="btn btn-ghost" id="btn-secret">
+                <span class="icon">✨</span>
+                <span>悄悄话模式</span>
+            </button>
+        </div>
+
+        <footer class="footer">
+            <span>Made with 100% 真心 · 0% 犹豫</span>
+            <span id="footer-note">此网页只属于：胡宇程 &amp; 姚娅姗</span>
+        </footer>
+    </main>
+
+    <script>
+        // 这里你可以自定义一个「开始深爱姚娅姗」的时间
+        // 格式：年, 月(0-11), 日, 时, 分, 秒
+        // 你说「今天是我们在一起的第 209 天」，在 2025-12-01 这天往前推 208 天 ≈ 2025-05-07
+        const LOVE_START = new Date(2025, 4, 7, 0, 0, 0); // 2025-05-07 00:00:00
+
+        const loveTimeEl = document.getElementById('love-time');
+        const promiseBtn = document.getElementById('btn-promise');
+        const secretBtn = document.getElementById('btn-secret');
+        const footerNote = document.getElementById('footer-note');
+
+        function formatDuration(ms) {
+            if (ms < 0) ms = 0;
+            const seconds = Math.floor(ms / 1000);
+            const days = Math.floor(seconds / (24 * 3600));
+            const hours = Math.floor((seconds % (24 * 3600)) / 3600);
+            const minutes = Math.floor((seconds % 3600) / 60);
+            const secs = seconds % 60;
+
+            return (
+                String(days).padStart(3, '0') + ' 天 ' +
+                String(hours).padStart(2, '0') + ' 小时 ' +
+                String(minutes).padStart(2, '0') + ' 分 ' +
+                String(secs).padStart(2, '0') + ' 秒'
+            );
+        }
+
+        function tickLoveTime() {
+            const diff = Date.now() - LOVE_START.getTime();
+            loveTimeEl.textContent = formatDuration(diff);
+        }
+
+        setInterval(tickLoveTime, 1000);
+        tickLoveTime();
+
+        // 按钮交互：终身告白
+        promiseBtn.addEventListener('click', () => {
+            const messages = [
+                '这辈子就打算这么黏着你了，不许甩掉我。',
+                '你负责可爱就好，剩下的交给宇程来扛。',
+                '如果全世界都熄灯了，我也要做你身边最后那盏灯。',
+                '从今天到很远的以后，我都只选择和你站在同一边。'
+            ];
+            const msg = messages[Math.floor(Math.random() * messages.length)];
+            alert('给姚娅姗的一封小告白：\n\n' + msg);
+        });
+
+        // 按钮交互：悄悄话模式（切换文案）
+        let secretToggle = false;
+        secretBtn.addEventListener('click', () => {
+            secretToggle = !secretToggle;
+            if (secretToggle) {
+                footerNote.textContent = '如果你看见了，就当作是我偷偷对你说的「我真的好喜欢你」。';
+                secretBtn.querySelector('span.icon').textContent = '🌙';
+                secretBtn.querySelectorAll('span')[1].textContent = '切回日常模式';
+            } else {
+                footerNote.textContent = '此网页只属于：胡宇程 & 姚娅姗';
+                secretBtn.querySelector('span.icon').textContent = '✨';
+                secretBtn.querySelectorAll('span')[1].textContent = '悄悄话模式';
+            }
+        });
+    </script>
+</body>
+</html>
